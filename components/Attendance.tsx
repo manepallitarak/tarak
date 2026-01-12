@@ -4,7 +4,9 @@ import { Search, UserCheck, UserX, Users, UserMinus, FileSpreadsheet, CheckCircl
 import { Student } from '../types';
 
 const Attendance: React.FC = () => {
+  // Standardized Logo Configuration
   const collegeLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzRPGb0yNg4L_3i8xH_J3_sz6wHYoGYGfqVQ&s";
+  const estdText = "ESTD. 1853";
 
   // Real Student Data from Government College (A), Rajahmundry - BBA (DM)
   const getOfficialStudents = (): Student[] => {
@@ -101,14 +103,14 @@ const Attendance: React.FC = () => {
 
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-6xl mx-auto px-4 md:px-0">
-      {/* Official Institutional Header with ESTD. 1853 Mark */}
+      {/* Standardized Institutional Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-12">
         <div className="flex items-center gap-6">
            <div className="flex flex-col items-center group">
-              <div className="w-24 h-24 bg-white rounded-full p-2 border border-slate-100 flex items-center justify-center transition-transform group-hover:scale-105 duration-500">
+              <div className="w-24 h-24 bg-white rounded-full p-2 border border-slate-100 flex items-center justify-center transition-transform group-hover:scale-105 duration-500 shadow-sm">
                 <img src={collegeLogo} alt="GCRJY Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="text-sm font-black text-[#1e3a8a] tracking-widest uppercase mt-2">ESTD. 1853</span>
+              <span className="text-sm font-black text-[#1e3a8a] tracking-widest uppercase mt-2">{estdText}</span>
            </div>
            <div>
               <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-none uppercase mb-2">Government College (A)</h2>
@@ -116,9 +118,6 @@ const Attendance: React.FC = () => {
                 <p className="text-slate-600 font-bold text-lg">BBA Digital Marketing Registry</p>
                 <div className="w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
                 <p className="text-blue-600 font-black text-sm uppercase tracking-widest">Academic Year 2025</p>
-              </div>
-              <div className="flex items-center gap-2 mt-3">
-                <span className="px-4 py-1.5 bg-blue-50 text-blue-700 rounded-xl text-[10px] font-black uppercase tracking-widest border border-blue-100 shadow-sm">Rajahmundry, Andhra Pradesh</span>
               </div>
            </div>
         </div>
@@ -130,7 +129,7 @@ const Attendance: React.FC = () => {
         </div>
       </div>
 
-      {/* Robust Metrics Dashboard */}
+      {/* Metrics Dashboard */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
         <div className="bg-white p-8 rounded-[3rem] border border-slate-100 shadow-sm flex flex-col justify-between group hover:border-blue-200 transition-all overflow-hidden relative">
           <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
@@ -148,12 +147,10 @@ const Attendance: React.FC = () => {
             <UserCheck size={80} />
           </div>
           <p className="text-[11px] font-black text-emerald-600 uppercase tracking-widest mb-4 flex items-center gap-2">
-            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
             Present
           </p>
           <div className="flex items-end gap-3">
             <h4 className="text-5xl font-black text-emerald-600 tracking-tighter">{presentCount}</h4>
-            <span className="text-xs font-bold text-emerald-400 mb-2 uppercase">Verified</span>
           </div>
         </div>
 
@@ -164,7 +161,6 @@ const Attendance: React.FC = () => {
           <p className="text-[11px] font-black text-red-600 uppercase tracking-widest mb-4">Absent</p>
           <div className="flex items-end gap-3">
             <h4 className="text-5xl font-black text-red-600 tracking-tighter">{absentCount}</h4>
-            <span className="text-xs font-bold text-red-400 mb-2 uppercase">Remaining</span>
           </div>
         </div>
 
@@ -173,59 +169,23 @@ const Attendance: React.FC = () => {
           <div className="flex items-end gap-2">
             <h4 className="text-5xl font-black tracking-tighter">{attendancePercentage}%</h4>
           </div>
-          <div className="mt-4 w-full bg-white/20 h-2 rounded-full overflow-hidden">
-            <div className="bg-white h-full transition-all duration-1000 ease-out" style={{ width: `${attendancePercentage}%` }}></div>
-          </div>
         </div>
       </div>
 
-      {/* Search & Actions Bar */}
-      <div className="flex flex-col lg:flex-row gap-6 mb-12">
-        <div className="relative flex-1 group">
-          <Search className="absolute left-7 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors" size={24} />
-          <input 
-            type="text" 
-            placeholder="Search Registry by Student Name or Roll Number..." 
-            className="w-full pl-16 pr-8 py-6 bg-white/95 backdrop-blur-md border border-slate-200 rounded-[3rem] text-lg font-bold text-black placeholder:text-slate-400 focus:outline-none focus:ring-8 focus:ring-blue-500/5 focus:border-blue-500 transition-all shadow-xl"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-        <div className="flex gap-4">
-          <button 
-            onClick={() => markAll(true)} 
-            className="px-10 py-6 bg-white border-2 border-slate-100 rounded-[3rem] text-[11px] font-black uppercase tracking-widest text-slate-600 hover:text-emerald-600 hover:border-emerald-600 transition-all shadow-lg active:scale-95 flex items-center gap-3"
-          >
-            <CheckCircle2 size={18} />
-            Mark All Present
-          </button>
-          <button 
-            onClick={() => markAll(false)} 
-            className="px-10 py-6 bg-white border-2 border-slate-100 rounded-[3rem] text-[11px] font-black uppercase tracking-widest text-slate-600 hover:text-red-600 hover:border-red-600 transition-all shadow-lg active:scale-95 flex items-center gap-3"
-          >
-            <UserMinus size={18} />
-            Reset Today
-          </button>
-        </div>
-      </div>
-
-      {/* Registry Table Container - Fixed Alignment and No Border Radius */}
+      {/* Registry Table */}
       <div className="bg-white border border-slate-200 shadow-2xl overflow-hidden mb-12 rounded-none">
         <div className="bg-slate-900 px-10 py-6 flex items-center justify-between text-white">
            <div className="flex items-center gap-3">
               <FileSpreadsheet size={20} className="text-blue-400" />
               <h3 className="text-sm font-black uppercase tracking-widest">Live Enrollment Registry</h3>
            </div>
-           <div className="text-[10px] font-black text-blue-400 uppercase tracking-[0.2em] bg-white/10 px-4 py-1.5 rounded-full">
-              Verified Entries: {presentCount} / {totalMembers}
-           </div>
         </div>
         <div className="max-h-[800px] overflow-y-auto custom-scrollbar">
           <table className="w-full text-left table-fixed">
             <thead className="sticky top-0 bg-white/98 backdrop-blur-md z-10 shadow-md">
               <tr className="bg-slate-50 border-b border-slate-100">
-                <th className="w-[12%] px-8 py-8 text-[11px] font-black text-slate-500 uppercase tracking-[0.3em] text-left">Code</th>
-                <th className="w-[63%] px-8 py-8 text-[11px] font-black text-slate-500 uppercase tracking-[0.3em] text-left">Student Identity</th>
+                <th className="w-[15%] px-8 py-8 text-[11px] font-black text-slate-500 uppercase tracking-[0.3em] text-left">Code</th>
+                <th className="w-[60%] px-8 py-8 text-[11px] font-black text-slate-500 uppercase tracking-[0.3em] text-left">Student Identity</th>
                 <th className="w-[25%] px-8 py-8 text-[11px] font-black text-slate-500 uppercase tracking-[0.3em] text-center">Status</th>
               </tr>
             </thead>
@@ -233,33 +193,28 @@ const Attendance: React.FC = () => {
               {filteredStudents.map((student) => (
                 <tr key={student.id} className="hover:bg-blue-50/40 transition-colors group">
                   <td className="px-8 py-8 align-middle">
-                     <div className={`w-14 h-14 rounded-2xl flex items-center justify-center font-black text-sm transition-all duration-500 border ${student.isPresent ? 'bg-blue-600 text-white border-blue-600 shadow-xl shadow-blue-500/20 rotate-3' : 'bg-white text-slate-400 border-slate-100 shadow-sm group-hover:bg-slate-50'}`}>
+                     <div className={`w-14 h-14 rounded-2xl flex items-center justify-center font-black text-sm border ${student.isPresent ? 'bg-blue-600 text-white border-blue-600 shadow-xl' : 'bg-white text-slate-400 border-slate-100'}`}>
                         {student.rollNumber.slice(-3)}
                       </div>
                   </td>
                   <td className="px-8 py-8 align-middle">
                     <div className="flex flex-col justify-center">
                       <div className="text-[13px] font-black text-blue-600 uppercase tracking-[0.2em] mb-1 font-mono">{student.rollNumber}</div>
-                      <div className="font-bold text-slate-700 text-sm leading-none uppercase tracking-tight group-hover:text-slate-900 transition-colors">{student.name}</div>
+                      <div className="font-bold text-slate-700 text-sm leading-none uppercase tracking-tight">{student.name}</div>
                     </div>
                   </td>
                   <td className="px-8 py-8 align-middle text-center">
-                    <div className="flex flex-col items-center justify-center">
-                      <button 
-                        onClick={() => toggleAttendance(student.id)}
-                        className={`
-                          w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 transform active:scale-90
-                          ${student.isPresent 
-                            ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-500/40 ring-4 ring-emerald-500/10' 
-                            : 'bg-white border-2 border-slate-200 text-slate-300 hover:border-emerald-400 hover:text-emerald-500 shadow-sm'}
-                        `}
-                      >
-                        {student.isPresent ? <CheckCircle size={32} strokeWidth={2.5} /> : <Circle size={32} strokeWidth={2} />}
-                      </button>
-                      <p className={`text-[9px] font-black mt-2 uppercase tracking-widest ${student.isPresent ? 'text-emerald-600' : 'text-slate-400'}`}>
-                         {student.isPresent ? 'Verified' : 'Pending'}
-                      </p>
-                    </div>
+                    <button 
+                      onClick={() => toggleAttendance(student.id)}
+                      className={`
+                        w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300
+                        ${student.isPresent 
+                          ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-500/40 ring-4 ring-emerald-500/10' 
+                          : 'bg-white border-2 border-slate-200 text-slate-300 hover:border-emerald-400 hover:text-emerald-500 shadow-sm'}
+                      `}
+                    >
+                      {student.isPresent ? <CheckCircle size={32} strokeWidth={2.5} /> : <Circle size={32} strokeWidth={2} />}
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -268,37 +223,11 @@ const Attendance: React.FC = () => {
         </div>
       </div>
 
-      {/* Legend Footer */}
-      <div className="flex items-center justify-center gap-12 py-12 border-t border-slate-100 mt-12">
-          <div className="flex flex-col items-center gap-3">
-             <div className="w-10 h-10 bg-emerald-600 text-white rounded-full flex items-center justify-center shadow-lg shadow-emerald-500/20">
-                <CheckCircle size={20} />
-             </div>
-             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Verified Present</span>
-          </div>
-          <div className="flex flex-col items-center gap-3">
-             <div className="w-10 h-10 bg-white border-2 border-slate-200 text-slate-300 rounded-full flex items-center justify-center">
-                <Circle size={20} />
-             </div>
-             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Mark Absent</span>
-          </div>
-      </div>
-
       <style dangerouslySetInnerHTML={{ __html: `
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 10px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(59, 130, 246, 0.08);
-          border-radius: 30px;
-          border: 3px solid transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: rgba(59, 130, 246, 0.2);
-        }
+        .custom-scrollbar::-webkit-scrollbar { width: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(59, 130, 246, 0.08); border-radius: 30px; border: 3px solid transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(59, 130, 246, 0.2); }
       `}} />
     </div>
   );

@@ -3,9 +3,13 @@ import React from 'react';
 import { Landmark, Building, Book, Users, Coffee, Camera, ShieldCheck, Award } from 'lucide-react';
 
 const CollegeShowcase: React.FC = () => {
+  // Standardized Logo Configuration
+  const collegeLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzRPGb0yNg4L_3i8xH_J3_sz6wHYoGYGfqVQ&s";
+  const estdText = "ESTD. 1853";
+  
   const images = [
     {
-      url: "	https://bhavanajagat.com/wp-content/uploads/2023/11/img_3076.jpeg?w=1000",
+      url: "https://bhavanajagat.com/wp-content/uploads/2023/11/img_3076.jpeg?w=1000",
       title: "Main Administrative Building",
       category: "Infrastructure",
       desc: "The historic Victorian-style architecture, a hallmark of Rajahmundry's education."
@@ -96,9 +100,6 @@ const CollegeShowcase: React.FC = () => {
             </h3>
             <p className="text-slate-400 font-bold mt-1 uppercase text-[10px] tracking-widest">Visual Infrastructure Tour</p>
           </div>
-          <button className="px-6 py-3 bg-white border border-slate-200 rounded-2xl font-black text-[10px] uppercase tracking-widest text-slate-600 hover:bg-slate-50 transition-all shadow-sm">
-            View Virtual Tour
-          </button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
@@ -127,22 +128,21 @@ const CollegeShowcase: React.FC = () => {
         </div>
       </div>
 
-      {/* Facilities & Furniture Section */}
+      {/* Facilities Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 px-4">
         <div className="bg-white p-10 md:p-14 rounded-[3.5rem] border border-slate-100 shadow-xl relative overflow-hidden group">
           <div className="absolute top-0 right-0 p-10 opacity-5 group-hover:opacity-10">
             <Book size={120} className="text-blue-600" />
           </div>
-          <h3 className="text-3xl font-black text-slate-900 tracking-tight mb-6 uppercase">Modern Furniture & Classrooms</h3>
+          <h3 className="text-3xl font-black text-slate-900 tracking-tight mb-6 uppercase">Infrastructure Modernization</h3>
           <p className="text-slate-600 text-lg font-medium leading-relaxed mb-8">
-            The college has undergone significant infrastructure modernization. Our classrooms feature ergonomic seating designed for long academic hours, integrated audio-visual aids, and smart desks that facilitate collaborative learning.
+            The college features ergonomic seating designed for long academic hours, integrated audio-visual aids, and smart desks that facilitate collaborative learning.
           </p>
           <ul className="space-y-4">
             {[
               "High-grade polymer student desks",
-              "Individual locker facilities",
               "Smart-board enabled classrooms",
-              "Tiered seating arrangements",
+              "Individual locker facilities",
               "Climate controlled seminar halls"
             ].map((item, idx) => (
               <li key={idx} className="flex items-center gap-3 text-sm font-black text-slate-500 uppercase tracking-widest">
@@ -157,9 +157,9 @@ const CollegeShowcase: React.FC = () => {
           <div className="absolute top-0 right-0 p-10 opacity-10 group-hover:opacity-20">
             <Users size={120} className="text-blue-500" />
           </div>
-          <h3 className="text-3xl font-black text-white tracking-tight mb-6 uppercase">Student Community Hubs</h3>
+          <h3 className="text-3xl font-black text-white tracking-tight mb-6 uppercase">Community Hubs</h3>
           <p className="text-slate-400 text-lg font-medium leading-relaxed mb-8">
-            Beyond academics, the campus provides premium furniture in shared spaces like the Innovation Hub and Central Library, ensuring students have the best resources for research and creative projects.
+            Shared spaces like the Innovation Hub and Central Library ensure students have the best resources for research and creative projects.
           </p>
           <div className="grid grid-cols-2 gap-4">
             <div className="p-6 bg-white/5 rounded-3xl border border-white/10 hover:border-blue-500/50 transition-colors">
@@ -176,10 +176,13 @@ const CollegeShowcase: React.FC = () => {
         </div>
       </div>
       
+      {/* Standardized Footer with Fixed Logo */}
       <div className="mt-20 text-center px-4">
-        <div className="max-w-3xl mx-auto py-12 border-t border-slate-100">
-          <img src="https://gcrjy.ac.in/assets/images/logo.png" alt="GCRJY Logo" className="w-20 mx-auto mb-6 opacity-30 grayscale hover:grayscale-0 transition-all cursor-pointer" />
-          <p className="text-[10px] font-black text-slate-300 uppercase tracking-[0.4em]">Government College (A) • Rajahmundry • ESTD 1853</p>
+        <div className="max-w-3xl mx-auto py-12 border-t border-slate-100 flex flex-col items-center">
+          <div className="w-24 h-24 mb-6 transition-transform hover:scale-110">
+            <img src={collegeLogo} alt="GCRJY Logo" className="w-full h-full object-contain" />
+          </div>
+          <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Government College (A) • Rajahmundry • {estdText}</p>
         </div>
       </div>
     </div>

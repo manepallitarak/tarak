@@ -11,8 +11,9 @@ const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<AppSection>(AppSection.PORTFOLIO);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Official Institutional Logo URL
+  // Standardized Logo Configuration
   const collegeLogo = "https://gcrjy.ac.in/assets/images/logo.png";
+  const estdText = "ESTD. 1853";
 
   const navigation = [
     { id: AppSection.PORTFOLIO, name: 'Portfolio Hub', icon: User },
@@ -35,7 +36,7 @@ const App: React.FC = () => {
         <div className="flex items-center gap-3">
           <div className="flex flex-col items-center">
             <img src={collegeLogo} alt="GCRJY Logo" className="w-10 h-10 object-contain" />
-            <span className="text-[9px] font-black text-[#1e3a8a] mt-0.5 tracking-tighter">ESTD. 1853</span>
+            <span className="text-[7px] font-black text-[#1e3a8a] mt-0.5 tracking-tighter">{estdText}</span>
           </div>
           <div className="h-8 w-[1px] bg-slate-200 mx-1"></div>
           <span className="font-black text-slate-900 tracking-tight text-[10px] uppercase leading-tight">Govt College (A)<br/>Rajahmundry</span>
@@ -55,10 +56,10 @@ const App: React.FC = () => {
       `}>
         <div className="hidden md:flex flex-col items-center gap-4 mb-12">
           <div className="flex flex-col items-center group">
-            <div className="w-28 h-28 bg-white rounded-full flex items-center justify-center p-2 transition-transform group-hover:scale-105 duration-500">
+            <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center p-1 border border-slate-50 shadow-sm transition-transform group-hover:scale-105 duration-500">
               <img src={collegeLogo} alt="GCRJY Logo" className="w-full h-full object-contain" />
             </div>
-            <span className="text-sm font-black text-[#1e3a8a] tracking-widest uppercase mt-2">ESTD. 1853</span>
+            <span className="text-xs font-black text-[#1e3a8a] tracking-widest uppercase mt-2">{estdText}</span>
           </div>
           
           <div className="text-center mt-2">
@@ -89,16 +90,18 @@ const App: React.FC = () => {
         </div>
 
         <div className="mt-auto pt-8 border-t border-slate-100">
-          <div className="p-5 bg-slate-50 rounded-3xl border border-slate-100">
-            <h4 className="text-slate-400 font-black text-[9px] uppercase tracking-widest mb-2">Academic Session</h4>
-            <p className="text-slate-900 text-[11px] font-black leading-relaxed uppercase">BBA Digital Marketing<br/>Final Year 2025</p>
+          <div className="p-5 bg-slate-50 rounded-3xl border border-slate-100 flex items-center gap-3">
+            <img src={collegeLogo} alt="Small Logo" className="w-8 h-8 object-contain opacity-40" />
+            <div>
+              <h4 className="text-slate-400 font-black text-[9px] uppercase tracking-widest">{estdText}</h4>
+              <p className="text-slate-900 text-[10px] font-black leading-tight uppercase">BBA Digital Marketing</p>
+            </div>
           </div>
         </div>
       </nav>
 
       {/* Main Content Area */}
       <main className="flex-1 p-4 md:p-10 lg:p-14 pb-24 md:pb-14 max-w-7xl mx-auto w-full relative z-10 overflow-x-hidden">
-        {/* Global Back to Home Option */}
         {activeSection !== AppSection.PORTFOLIO && (
           <div className="mb-8 animate-in fade-in slide-in-from-left-4 duration-500">
             <button 
@@ -119,15 +122,7 @@ const App: React.FC = () => {
         {activeSection === AppSection.COLLEGE_VIEW && <CollegeShowcase />}
       </main>
 
-      {/* Overlay for mobile menu */}
-      {isMobileMenuOpen && (
-        <div 
-          className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm z-30 md:hidden"
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
-      )}
-
-      {/* Bottom Nav for Mobile */}
+      {/* Mobile Bottom Nav */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-t flex justify-around p-4 z-40 shadow-2xl rounded-t-[2rem]">
         {navigation.map((item) => (
           <button
